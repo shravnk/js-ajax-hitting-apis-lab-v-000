@@ -8,7 +8,7 @@ function showRepositories(event, data) {
     `<li>
       <p>${r.name}</p>
       <a href="${r.html_url}">${r.html_url}</a><br>
-      <a href="#" onclick="getCommits(this)"><br>   
+      <a href="#" onclick="getCommits(this)"></a><br>
     </li>
     `
   )
