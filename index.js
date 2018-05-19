@@ -2,11 +2,13 @@ function showRepositories(event, data) {
   var repos = JSON.parse(this.responseText)
   console.log(repos)
   const repoList = `<ul>${repos.map(r => {
+  const dataUsername = `data-username="${r.owner.login}"`
+  const dataRepoName = `data-repository="${r.name}"`
   return(
-    `<li> 
+    `<li>
       <p>${r.name}</p>
       <a href="${r.html_url}">${r.html_url}</a><br>
-      
+      <a href="#" onclick="getCommits(this)"><br>   
     </li>
     `
   )
@@ -32,6 +34,6 @@ function getCommits(el) {
   const name = el.dataset.repo
   const req = new XMLHttpRequest()
   req.addEventListener("load", showCommits)
-  req.open("GET", 'https://api.github.com/repos/octocat/' + name + '/commits')
+  req.open("GET", `https://api.github.com/repos/${username}//commits`)
   req.send()
 }
