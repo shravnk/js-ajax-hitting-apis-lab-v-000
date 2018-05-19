@@ -15,7 +15,13 @@ function showRepositories(event, data) {
   document.getElementById("repositories").innerHTML = repoList
 }
 
-function showCommits() {
+function displayCommits() {
+  const commits = JSON.parse(this.responseText)
+  const commitsList = `<ul>${commits.map(commit => '<li><strong>' + commit.author.login + '</strong> - ' + commit.commit.message + '</li>').join('')}</ul>`
+  document.getElementById("details").innerHTML = commitsList
+}
+
+function displayBranches() {
   const commits = JSON.parse(this.responseText)
   const commitsList = `<ul>${commits.map(commit => '<li><strong>' + commit.author.login + '</strong> - ' + commit.commit.message + '</li>').join('')}</ul>`
   document.getElementById("details").innerHTML = commitsList
@@ -34,6 +40,15 @@ function getCommits(el) {
   const username = el.dataset.username
   const req = new XMLHttpRequest()
   req.addEventListener("load", showCommits)
+  req.open("GET", `https://api.github.com/repos/${username}/${repoName}/commits`)
+  req.send()
+}
+
+function getBranches(el) {
+  const repoName = el.dataset.repository
+  const username = el.dataset.username
+  const req = new XMLHttpRequest()
+  req.addEventListener("load", displayBranches)
   req.open("GET", `https://api.github.com/repos/${username}/${repoName}/commits`)
   req.send()
 }
