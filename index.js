@@ -3,7 +3,12 @@ function showRepositories(event, data) {
   console.log(repos)
   const repoList = `<ul>${repos.map(r => {
   return(
-    '<li>' + r.name + ' - <a href="' + r.html_url + '">Visit</a></li>'
+    `<li> 
+      <p>${r.name}</p>
+      <a href="${r.html_url}">${r.html_url}</a><br>
+      
+    </li>
+    `
   )
   }).join('')}</ul>`
   document.getElementById("repositories").innerHTML = repoList
