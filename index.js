@@ -25,7 +25,7 @@ function displayCommits() {
 function displayBranches() {
   const branches = JSON.parse(this.responseText)
   const branchesList = `<ul>${branches.map(branch => '<li><strong>' + branch.name + '</strong> /li>').join('')}</ul>`
-  document.getElementById("details").innerHTML = commitsList
+  document.getElementById("details").innerHTML = branchesList
 }
 
 function getRepositories() {
