@@ -8,10 +8,9 @@ function showRepositories(event, data) {
     `<li>
       <p>${r.name}</p>
       <a href="${r.html_url}">${r.html_url}</a><br>
-      <a href="#" onclick="getCommits(this)">Commits</a><br>
-    </li>
-    `
-  )
+      <a href="#"  ${dataRepoName} ${dataUsername} onclick="getCommits(this)">Commits</a><br>
+    </li>`
+    )
   }).join('')}</ul>`
   document.getElementById("repositories").innerHTML = repoList
 }
